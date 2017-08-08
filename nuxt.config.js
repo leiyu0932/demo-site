@@ -11,7 +11,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/app/favicon.ico' },
       { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_34k2qe0ajxtro1or.css' }
     ]
   },
@@ -27,6 +27,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    publicPath: 'app/',
     build: {
       vendor: ['axios', 'mint-ui']
     },
