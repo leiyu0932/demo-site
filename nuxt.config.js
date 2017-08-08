@@ -27,7 +27,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    publicPath: 'app/',
+    publicPath: '/app/',
     build: {
       vendor: ['axios', 'mint-ui']
     },
