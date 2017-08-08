@@ -2,7 +2,7 @@
   <div>
     <nuxt/>
     <mt-tabbar v-model="selected">
-      <mt-tab-item id="/home">
+      <mt-tab-item id="/app/home">
         <i class="pai ip-shouyeicon" slot="icon"></i>
         首页
       </mt-tab-item>
@@ -14,7 +14,7 @@
         <i class="pai ip-jingxuan" slot="icon"></i>
         发现
       </mt-tab-item>
-      <mt-tab-item id="/user">
+      <mt-tab-item id="/app/user">
         <i class="pai ip-wode" slot="icon"></i>
         我的
       </mt-tab-item>

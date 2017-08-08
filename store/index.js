@@ -12,15 +12,15 @@ export const mutations = {
 
 export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
-  nuxtServerInit ({ commit }, { req }) {
-    console.log(req)
+  // nuxtServerInit ({ commit }, { req }) {
+    // console.log(req)
     // 不需要 跨域
     // let { data } = await axios.get('http://php.test.huandengpai.com/api/nodejs/user/test')
     // console.log(data)
     // if (data.status !== 301) {
     //   commit('SET_USER', data)
     // }
-  },
+  // },
   async login ({ commit }, { username, password }) {
     try {
       // const params = new URLSearchParams();

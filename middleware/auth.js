@@ -6,7 +6,7 @@ export default async function ({ store, redirect, error }) {
     if (data.status === 200) {
       store.state.authUser = data
     } else if (data.status === 301) {
-      return redirect('/login')
+      return redirect('/app/login')
     } else {
       error({
         message: 'You are not connected',
