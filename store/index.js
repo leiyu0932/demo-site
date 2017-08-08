@@ -28,9 +28,9 @@ export const actions = {
       const params = {
         username,
         password
-      };
-      axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-      axios.defaults.withCredentials = true;
+      }
+      axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+      axios.defaults.withCredentials = true
       console.log(params)
       const { data } = await axios.get('/api/nodejs/user/login.json?username=18611739966&password=123456')
       // const { data } = await axios.post('http://php.test.huandengpai.com/api/nodejs/user/login.json', params)
