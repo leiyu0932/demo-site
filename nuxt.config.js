@@ -10,17 +10,34 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: '//at.alicdn.com/t/font_34k2qe0ajxtro1or.css' }
     ]
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#3B8070' },
+  loading: {
+    color: '#4FC08D',
+    failedColor: '#bf5050',
+    duration: 1500
+  },
   /*
   ** Build configuration
   */
   build: {
+    build: {
+      vendor: ['axios', 'mint-ui']
+    },
+    babel:{
+      "plugins": [["component", [
+        {
+          "libraryName": "mint-ui",
+          "style": true
+        }
+      ]]],
+      "comments": true
+    },
     /*
     ** Run ESLINT on save
     */
@@ -34,5 +51,8 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  plugins: [
+    { src: '~plugins/mint-ui', ssr: true }
+  ]
 }
