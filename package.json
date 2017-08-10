@@ -4,6 +4,12 @@
   "description": "vue ssr nuxt drupal node ",
   "author": "thunder King star",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "127.0.0.1",
+      "port": "3001"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
