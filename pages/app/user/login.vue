@@ -1,24 +1,20 @@
 <template>
   <div class="container">
-    <h1>Please login to see the secret content</h1>
-    <form v-if="!$store.state.authUser" @submit.prevent="login">
-      <p class="error" v-if="formError">{{ formError }}</p>
-      <p><i>To login, use <b>demo</b> as username and <b>demo</b> as password.</i></p>
+    <form @submit.prevent="login">
       <p>Username: <input type="text" v-model="formUsername" name="username" /></p>
       <p>Password: <input type="password" v-model="formPassword" name="password" /></p>
       <button type="submit">Login</button>
     </form>
-    <div v-else>
-      Hello {{ $store.state.authUser.username }}!
-      <pre>I am the secret content, I am shown only when the use is connected.</pre>
-      <p><i>You can also refresh this page, you'll still be connected!</i></p>
-      <!-- <button @click="logout">Logout</button> -->
-    </div>
   </div>
 </template>
 <script>
+// import axios from '~/utils/axiosCross'
+// import { handle } from '~/utils/handle'
+
 export default {
   name: 'login',
+  layout: 'main',
+  middleware: 'auth',
   data () {
     return {
       formError: null,
@@ -36,12 +32,36 @@ export default {
         this.formUsername = ''
         this.formPassword = ''
         this.formError = null
+        // this.$router.push('/app/user')
       } catch (e) {
         this.formError = e.message
       }
     }
   }
+  // async created () {
+  //   console.log(this)
+  //   const response = await axios.get('nodejs/user/test')
+  //   console.log(response.data)
+  //   const callback = data => {
+  //     context.store.commit('SET_USER', data)
+  //     context.redirect('/app/user')
+  //   }
+  //   handle({
+  //     context: {
+  //
+  //     },
+  //     response,
+  //     callback
+  //   })
+  // }
 }
 </script>
 <style scoped>
+  input{
+    margin: 20px;
+    border: 1px solid #000
+  }
+  button{
+    font-size: 20px
+  }
 </style>

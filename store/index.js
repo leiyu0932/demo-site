@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from '~/utils/axiosCross'
+import Cookies from '~/utils/js.cookie'
 
 export const state = () => ({
   authUser: null
@@ -30,12 +31,14 @@ export const actions = {
         username,
         password
       }
-      axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-      axios.defaults.withCredentials = true
+      // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+      // axios.defaults.withCredentials = true
       console.log(params)
-      const { data } = await axios.get('/api/nodejs/user/login.json?username=18611739966&password=123456')
+      const response = await axios.get('nodejs/user/login.json?username=18611739966&password=123456')
+      console.log(Cookies)
+      Cookies.set(response.data.session_name, response.data.sessid, { expires: 7, path: '' })
       // const { data } = await axios.post('http://php.test.huandengpai.com/api/nodejs/user/login.json', params)
-      commit('SET_USER', data)
+      commit('SET_USER', response.data)
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials')

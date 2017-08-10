@@ -1,5 +1,6 @@
+const resolve = require('path').resolve
+
 module.exports = {
-  srcDir: 'app/',
   /*
   ** Headers of the page
   */
@@ -23,6 +24,22 @@ module.exports = {
     failedColor: '#bf5050',
     duration: 1500
   },
+  /*
+  ** extendRoutes
+  */
+  router: {
+    extendRoutes (routes) {
+      routes.push({
+        name: 'custom',
+        path: '*',
+        component: resolve(__dirname, 'pages/app/404.vue')
+      })
+    }
+  },
+  /*
+  ** Global CSS
+  */
+  css: ['~/assets/css/reset.css'],
   /*
   ** Build configuration
   */
@@ -55,6 +72,6 @@ module.exports = {
     }
   },
   plugins: [
-    { src: '~plugins/mint-ui', ssr: true }
+    { src: '~/plugins/mint-ui', ssr: true }
   ]
 }

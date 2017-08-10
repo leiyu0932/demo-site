@@ -1,18 +1,17 @@
 <template>
   <div>
-    <nuxt/>
     <mt-tabbar v-model="selected">
       <mt-tab-item id="/app/home">
         <i class="pai ip-shouyeicon" slot="icon"></i>
         首页
       </mt-tab-item>
-      <mt-tab-item id="/2">
+      <mt-tab-item id="/app/content/items">
         <i class="pai ip-liebiao" slot="icon"></i>
-        订单
+        列表
       </mt-tab-item>
-      <mt-tab-item id="/3">
+      <mt-tab-item id="/app/user/login">
         <i class="pai ip-jingxuan" slot="icon"></i>
-        发现
+        登入
       </mt-tab-item>
       <mt-tab-item id="/app/user">
         <i class="pai ip-wode" slot="icon"></i>
@@ -37,7 +36,7 @@
       this.selected = this.$router.currentRoute.path
     },
     updated () {
-      console.log(0)
+      console.log(10)
       // this.selected = this.$router.currentRoute.path
     }
   }
