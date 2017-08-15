@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <h2>登入</h2>
-    <form @submit.prevent="login">
+    <h2>注册</h2>
+    <form @submit.prevent="reg">
       <p>Username:
         <input type="text" v-model="formUsername" name="username" />
       </p>
       <p>Password:
         <input type="password" v-model="formPassword" name="password" />
       </p>
-      <button type="submit">Login</button>
-      <nuxt-link to="/app/user/reg">注册</nuxt-link>
+      <button type="submit">注册</button>
+      <nuxt-link to="/app/user/login">登入</nuxt-link>
     </form>
   </div>
 </template>
@@ -29,9 +29,9 @@ export default {
     }
   },
   methods: {
-    async login () {
+    async reg () {
       try {
-        await this.$store.dispatch('login', {
+        await this.$store.dispatch('reg', {
           username: this.formUsername,
           password: this.formPassword
         })
@@ -44,22 +44,6 @@ export default {
       }
     }
   }
-  // async created () {
-  //   console.log(this)
-  //   const response = await axios.get('nodejs/user/test')
-  //   console.log(response.data)
-  //   const callback = data => {
-  //     context.store.commit('SET_USER', data)
-  //     context.redirect('/app/user')
-  //   }
-  //   handle({
-  //     context: {
-  //
-  //     },
-  //     response,
-  //     callback
-  //   })
-  // }
 }
 </script>
 <style scoped>

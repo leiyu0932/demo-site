@@ -14,30 +14,31 @@ export const mutations = {
 export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
   // nuxtServerInit ({ commit }, { req }) {
-    // console.log(req)
-    // 不需要 跨域
-    // let { data } = await axios.get('http://php.test.huandengpai.com/api/nodejs/user/test')
-    // console.log(data)
-    // if (data.status !== 301) {
-    //   commit('SET_USER', data)
-    // }
+  // console.log(req)
+  // 不需要 跨域
+  // let { data } = await axios.get('http://php.test.huandengpai.com/api/nodejs/user/test')
+  // console.log(data)
+  // if (data.status !== 301) {
+  //   commit('SET_USER', data)
+  // }
   // },
   async login ({ commit }, { username, password }) {
     try {
-      // const params = new URLSearchParams();
-      // params.append('username', username);
-      // params.append('password', password);
+      // const params = new URLSearchParams()
+      // params.append('username', '18611739966')
+      // params.append('password', '123456')
       const params = {
-        username,
-        password
+        username: 18611739966,
+        password: 123456
       }
       // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
       // axios.defaults.withCredentials = true
-      console.log(params)
-      const response = await axios.get('nodejs/user/login.json?username=18611739966&password=123456')
-      console.log(Cookies)
-      Cookies.set(response.data.session_name, response.data.sessid, { expires: 7, path: '' })
-      // const { data } = await axios.post('http://php.test.huandengpai.com/api/nodejs/user/login.json', params)
+      // console.log(params)
+      const response = await axios.post('ajax/user/login', params)
+      console.log(window.location.origin)
+      if (window.location.origin === 'http://localhost:3001') {
+        Cookies.set(response.data.data.session.name, response.data.data.session.id, { expires: 7, path: '' })
+      }
       commit('SET_USER', response.data)
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -47,9 +48,23 @@ export const actions = {
     }
   },
 
-  async logout ({ commit }) {
-    await axios.post('/api/logout')
-    commit('SET_USER', null)
+  async reg ({ commit }, { username, password }) {
+    try {
+      const params = {
+        username,
+        password
+      }
+      const response = await axios.post('ajax/user/reg', params)
+      if (process.env.NODE_ENV === 'development') {
+        Cookies.set(response.data.data.session.name, response.data.data.session.id, { expires: 7, path: '' })
+      }
+      commit('SET_USER', response.data)
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        throw new Error('Bad credentials')
+      }
+      throw error
+    }
   }
 
 }

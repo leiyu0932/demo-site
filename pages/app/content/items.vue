@@ -2,7 +2,7 @@
   <div class="container">
     <!-- <h2>{{ items }}</h2> -->
     <ul class="items">
-      <li v-for="item in items">
+      <li v-for="item in items" :key="item.article.id">
         <nuxt-link :to="'/app/content/detail/'+item.article.id">{{ item.article.title }}</nuxt-link>
         <p>{{ item.article.body }}</p>
       </li>
@@ -37,9 +37,11 @@ export default {
   margin-top: 100px;
   font-family: sans-serif;
 }
+
 .users {
   list-style-type: none;
 }
+
 .users li a {
   display: inline-block;
   width: 200px;
@@ -49,6 +51,7 @@ export default {
   color: #222;
   text-decoration: none;
 }
+
 .users li a:hover {
   color: orange;
 }

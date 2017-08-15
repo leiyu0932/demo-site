@@ -12,13 +12,13 @@ export default async function (context) {
         cookie
       }
     }
-    const response = await axios.get('nodejs/user/test', config)
+    const response = await axios.get('ajax/user/info', config)
     console.dir(response.data)
     const callback = data => {
       context.store.commit('SET_USER', data)
       context.redirect('/app/user')
     }
-    const notLogin = data => {}
+    const notLogin = data => { }
     handle({
       context,
       response,

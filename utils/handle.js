@@ -17,18 +17,18 @@ const handleCallback = {
         case 300:
           options.context.redirect(data.url)
           break
-        case 301:
-          // options.context.store.commit('SET_USER', '301')
-          if (options.notLogin) {
-            options.notLogin(data)
-          } else {
-            options.context.redirect('/app/login')
-          }
-          break
         case 310:
           // 接口换了 或 已不存在
           // 调用写日志方法把日志写到node服务器
           options.context.redirect('/app/310')
+          break
+        case 401:
+          // options.context.store.commit('SET_USER', '301')
+          if (options.notLogin) {
+            options.notLogin(data)
+          } else {
+            options.context.redirect('/app/user/login')
+          }
           break
         case 400:
           // 处理返回的data.message
