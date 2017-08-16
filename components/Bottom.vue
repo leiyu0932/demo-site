@@ -26,7 +26,7 @@ export default {
   }),
   watch: {
     selected () {
-      console.log(this.selected)
+      // console.log(this.selected)
       this.$router.push(this.selected)
     }
   },
@@ -34,7 +34,7 @@ export default {
     this.selected = this.$router.currentRoute.path
   },
   updated () {
-    console.log(10)
+    // console.log(10)
     // this.selected = this.$router.currentRoute.path
   }
 }

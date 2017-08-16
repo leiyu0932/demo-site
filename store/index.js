@@ -13,16 +13,16 @@ export const mutations = {
 
 export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
-  // nuxtServerInit ({ commit }, { req }) {
+  // nuxtServerInit ({ context.commit }, { req }) {
   // console.log(req)
   // 不需要 跨域
   // let { data } = await axios.get('http://php.test.huandengpai.com/api/nodejs/user/test')
   // console.log(data)
   // if (data.status !== 301) {
-  //   commit('SET_USER', data)
+  //   context.commit('SET_USER', data)
   // }
   // },
-  async login ({ commit }, { username, password }) {
+  async login (context, { username, password }) {
     try {
       // const params = new URLSearchParams()
       // params.append('username', '18611739966')
@@ -39,7 +39,7 @@ export const actions = {
       if (window.location.origin === 'http://localhost:3001') {
         Cookies.set(response.data.data.session.name, response.data.data.session.id, { expires: 7, path: '' })
       }
-      commit('SET_USER', response.data)
+      context.commit('SET_USER', response.data)
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials')
@@ -48,7 +48,7 @@ export const actions = {
     }
   },
 
-  async reg ({ commit }, { username, password }) {
+  async reg ({ context }, { username, password }) {
     try {
       const params = {
         username,
@@ -58,7 +58,7 @@ export const actions = {
       if (process.env.NODE_ENV === 'development') {
         Cookies.set(response.data.data.session.name, response.data.data.session.id, { expires: 7, path: '' })
       }
-      commit('SET_USER', response.data)
+      context.commit('SET_USER', response.data)
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials')

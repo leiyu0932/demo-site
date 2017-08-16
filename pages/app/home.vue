@@ -25,21 +25,19 @@ import Bottom from '~/components/Bottom'
 export default {
   name: 'home',
   // layout: 'main',
+  middleware: 'apitest',
   components: {
     Bottom
   },
   async asyncData () {
     const { data } = await axios.get('app/home')
-    console.log(process.env.NODE_ENV)
+    // console.log(process.env.NODE_ENV)
     return {
       info: data
     }
   },
   head: {
     title: 'Home'
-  },
-  beforeCreate () {
-    console.log(process.env.NODE_ENV)
   },
   methods: {
     handleClick1 () {
