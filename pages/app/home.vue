@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="home">
-      {{ info.status }}
+      sss {{ info.status }}sss
       <br>
       <mt-button @click.native="handleClick1">点击弹出this.$toast</mt-button>
       <mt-button @click.native="handleClick2">点击弹出带有 icon 的 this.$toast</mt-button>
@@ -25,7 +25,7 @@ import Bottom from '~/components/Bottom'
 export default {
   name: 'home',
   // layout: 'main',
-  middleware: 'apitest',
+  // middleware: 'apitest',
   components: {
     Bottom
   },

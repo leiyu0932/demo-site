@@ -1,5 +1,5 @@
 import axios from '~/utils/axiosCross'
-import { handle } from '~/utils/handle'
+import { handleApi } from '~/utils/handle'
 
 export default async function (context) {
   if (!context.store.state.authUser) {
@@ -19,7 +19,7 @@ export default async function (context) {
       context.redirect('/app/user')
     }
     const notLogin = data => { }
-    handle({
+    handleApi({
       context,
       response,
       callback,

@@ -18,7 +18,7 @@ const handleCallback = {
    * http://drupal.leiwangxing.com/api/ajax/demo/api9 405，无此方法
    * http://drupal.leiwangxing.com/api/lakjdsflaksjfdlajdsflk 404，无此接口
    */
-  handle (options) {
+  handleApi (options) {
     const res = options.response
     const data = res.data
     if (res.status === 200) {
@@ -108,7 +108,12 @@ const handleCallback = {
     } else {
       options.context.redirect('/app/404')
     }
+  },
+  handleAjax () {
+
   }
 }
 
-export const handle = handleCallback.handle
+export const handleApi = handleCallback.handleApi
+
+export const handleAjax = handleCallback.handleAjax
