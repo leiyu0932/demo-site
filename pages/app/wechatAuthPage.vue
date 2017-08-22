@@ -5,18 +5,27 @@
   </div>
 </template>
 <script>
-// import axios from '~/utils/axiosCross'
+import axios from '~/utils/axiosCross'
+import { handleApi } from '~/utils/handle'
 
 export default {
   name: 'wechatAuthPage',
-  async asyncData ({ query }) {
-    // const { data } = await axios.get('xxx')
-    // if (data.status === 200) {
-    //   redirect(query.red)
-    // }
-    console.log(query)
+  async asyncData (context) {
+    const params = {
+      code: context.query.code,
+      state: context.query.state
+    }
+    const response = await axios.post('ajax/weixin/auth/login', params)
+    const callback = data => {
+      context.redirect(context.query.red)
+    }
+    handleApi({
+      context,
+      response,
+      callback
+    })
     return {
-      info: query
+      info: response.data
     }
   }
 }

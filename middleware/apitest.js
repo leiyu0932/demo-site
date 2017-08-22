@@ -9,7 +9,7 @@ export default async function (context) {
     console.log('处理200')
   }
   // 需要微信登入的话传递回调页面
-  const callbackPage = '/app/home'
+  const callbackPage = '/app/weixin/auth/info'
 
   // 需要覆盖未登入401处理的话如下第一
   // const notLogin = data => { }

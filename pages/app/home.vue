@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="home">
+      <nuxt-link to="/app/weixin/auth/info">测试页面</nuxt-link>
       sss {{ info.status }}sss
       <br>
       <mt-button @click.native="handleClick1">点击弹出this.$toast</mt-button>
@@ -25,7 +26,7 @@ import Bottom from '~/components/Bottom'
 export default {
   name: 'home',
   // layout: 'main',
-  middleware: 'apitest',
+  // middleware: 'apitest',
   components: {
     Bottom
   },
