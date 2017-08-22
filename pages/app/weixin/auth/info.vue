@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import axios from '~/utils/axiosCross'
+// import axios from '~/utils/axiosCross'
 
 export default {
   name: 'info',
