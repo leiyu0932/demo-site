@@ -11,10 +11,10 @@ export default {
     return {
       red: query.red
     }
-  },
-  mounted () {
-    this.$router.push(this.red)
   }
+  // mounted () {
+  //   this.$router.push(this.red)
+  // }
 }
 </script>
 <style scoped>
