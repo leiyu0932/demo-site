@@ -25,7 +25,7 @@ import Bottom from '~/components/Bottom'
 export default {
   name: 'home',
   // layout: 'main',
-  // middleware: 'apitest',
+  middleware: 'apitest',
   components: {
     Bottom
   },

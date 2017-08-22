@@ -1,4 +1,5 @@
 import { apiLog } from './apiLog'
+import { BASE_URL, WECHATAUTHURL, WECHATAUTHSUFFIX, WECHATAUTHPAGE } from './consts'
 
 /**
  * 对异步数据code处理
@@ -50,6 +51,13 @@ const handleCallback = {
             options.notLogin(data)
           } else {
             options.context.redirect('/app/user/login')
+          }
+          break
+        case 402:
+          if (data.data.type === 'wxauth') {
+            const red = encodeURIComponent(`${BASE_URL}${WECHATAUTHPAGE}?red=${options.callbackPage}`)
+            // options.callbackPage
+            options.context.redirect(getWechatAuthUrl(red))
           }
           break
         case 403:
@@ -113,6 +121,8 @@ const handleCallback = {
 
   }
 }
+
+const getWechatAuthUrl = redirect => `${WECHATAUTHURL}&redirect_uri=${redirect}${WECHATAUTHSUFFIX}`
 
 export const handleApi = handleCallback.handleApi
 
