@@ -11,6 +11,7 @@ export const mutations = {
     state.authUser = user
   },
   SETERRORMESSAGE: function (state, msg) {
+    console.log(msg + 'sssss-----')
     state.errorMessage = msg
   }
 }

@@ -43,7 +43,7 @@ const handleCallback = {
           // 接口换了 或 已不存在
           // 调用写日志方法把日志写到node服务器
           apiLog({ oldUrl: data.old_url, url: data.url })
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 401:
           // options.context.store.commit('SET_USER', '301')
@@ -81,44 +81,37 @@ const handleCallback = {
         case 400:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 404:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 405:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 406:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 410:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 422:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
         case 503:
           // 处理返回的data.message
           apiLog({ message: data.message })
-          options.context.store.commit('SETERRORMESSAGE', data.message)
-          options.context.redirect('/app/errorlog')
+          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
           break
 
         default:

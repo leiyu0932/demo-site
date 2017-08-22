@@ -1,16 +1,16 @@
 <template>
   <div>
     errorlog
-    <br> {{ msg }}
+    <br> {{ info }}
     <nuxt-link to="/app/home">首页</nuxt-link>
   </div>
 </template>
 <script>
 export default {
   name: 'errorlog',
-  computed: {
-    msg () {
-      return this.$store.state.msg
+  asyncData ({ query }) {
+    return {
+      info: query.msg
     }
   }
 }
