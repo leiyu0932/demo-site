@@ -6,7 +6,7 @@
 </template>
 <script>
 import axios from '~/utils/axiosCross'
-import { handleApi } from '~/utils/handle'
+// import { handleApi } from '~/utils/handle'
 
 export default {
   name: 'wechatAuthPage',
