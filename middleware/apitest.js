@@ -2,7 +2,16 @@ import axios from '~/utils/axiosCross'
 import { handleApi } from '~/utils/handle'
 
 export default async function (context) {
-  const response = await axios.get('ajax/weixin/demo/auth?p1=a&p2=b')
+  const config = {}
+  if (context.isServer && context.req && context.req.headers.cookie) {
+    const cookie = context.req.headers.cookie
+    config.headers = {
+      'X-Requested-With': 'XMLHttpRequest',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      cookie
+    }
+  }
+  const response = await axios.get('ajax/weixin/demo/auth?p1=a&p2=b', config)
   console.log(response.data.status)
   // 默认回调函数
   const callback = data => {
