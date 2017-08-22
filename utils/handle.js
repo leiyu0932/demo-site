@@ -57,7 +57,11 @@ const handleCallback = {
           if (data.data.type === 'wxauth') {
             const red = encodeURIComponent(`${BASE_URL}${WECHATAUTHPAGE}?red=${options.callbackPage}`)
             // options.callbackPage
-            options.context.redirect(getWechatAuthUrl(red))
+            if (options.context.isServer) {
+              options.context.redirect(getWechatAuthUrl(red))
+            } else {
+              window.location.href = getWechatAuthUrl(red)
+            }
           }
           break
         case 403:
