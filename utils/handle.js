@@ -81,36 +81,43 @@ const handleCallback = {
         case 400:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
         case 404:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
         case 405:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
         case 406:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
         case 410:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
         case 422:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
         case 503:
           // 处理返回的data.message
           apiLog({ message: data.message })
+          options.context.store.commit('SETERRORMESSAGE', data.message)
           options.context.redirect('/app/errorlog')
           break
 

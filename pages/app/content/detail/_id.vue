@@ -16,17 +16,14 @@ export default {
     return !isNaN(+params.id)
   },
   async asyncData ({ params, error, redirect }) {
-    try {
-      const { data } = await axios.get(`app/content/detail?id=${+params.id}`)
-      console.log(data)
-      if (data.status === 401) {
-        redirect('/app/user/login')
-      }
+    const { data } = await axios.get(`app/content/detail?id=${+params.id}`)
+    console.log(data)
+    if (data.status === 401) {
+      redirect('/app/user/login')
+    } else {
       return {
         info: JSON.parse(data.data.rows).nodes[0].node
       }
-    } catch (e) {
-      error({ message: 'User not found', statusCode: 404 })
     }
   }
 }

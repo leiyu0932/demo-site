@@ -2,12 +2,16 @@ import axios from '~/utils/axiosCross'
 import Cookies from '~/utils/js.cookie'
 
 export const state = () => ({
-  authUser: null
+  authUser: null,
+  errorMessage: ''
 })
 
 export const mutations = {
   SET_USER: function (state, user) {
     state.authUser = user
+  },
+  SETERRORMESSAGE: function (state, msg) {
+    state.errorMessage = msg
   }
 }
 
