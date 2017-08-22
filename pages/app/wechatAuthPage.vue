@@ -17,6 +17,7 @@ export default {
     }
     const response = await axios.post('ajax/weixin/auth/login', params)
     const callback = data => {
+      console.log(context.query)
       context.redirect(context.query.red)
     }
     handleApi({
