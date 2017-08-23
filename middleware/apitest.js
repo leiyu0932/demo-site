@@ -16,7 +16,7 @@ export default async function (context) {
   console.log(response.data.status)
   // 默认回调函数
   const callback = data => {
-    console.log('处理200')
+    context.info = data
   }
   // 需要微信登入的话传递回调页面
   const callbackPage = '/app/weixin/auth/info'

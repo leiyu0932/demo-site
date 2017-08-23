@@ -21,112 +21,80 @@ const handleCallback = {
    */
   handleApi (options) {
     const res = options.response
-    const data = res.data
     if (res.status === 200) {
-      switch (data.status) {
-        case 200:
-          options.callback(data)
-          break
-        case 210:
-          options.callback(data)
-          break
-        case 300:
-          if (/^\//.test(data.data.url)) {
-            options.context.redirect(data.data.url)
-          } else if (!options.context.isServer) {
-            window.location.href = data.data.url
-          } else {
-            apiLog({ message: '服务端暂时不知道怎么重定向，需要研究一下' })
-          }
-          break
-        case 310:
-          // 接口换了 或 已不存在
-          // 调用写日志方法把日志写到node服务器
-          apiLog({ oldUrl: data.old_url, url: data.url })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 401:
-          // options.context.store.commit('SET_USER', '301')
-          if (options.notLogin) {
-            options.notLogin(data)
-          } else {
-            options.context.redirect('/app/user/login')
-          }
-          break
-        case 402:
-          if (data.data.type === 'wxauth') {
-            const red = encodeURIComponent(`${BASE_URL}${WECHATAUTHPAGE}?red=${options.callbackPage}`)
-            // options.callbackPage
-            if (options.context.isServer) {
-              options.context.redirect(getWechatAuthUrl(red))
-            } else {
-              window.location.href = getWechatAuthUrl(red)
-            }
-          }
-          break
-        case 403:
-          // options.context.store.commit('SET_USER', '301')
+      const data = res.data
+      const status = data.status
+      if (status === 200 || status === 210) {
+        options.callback(data)
+      } else if (status === 401) {
+        if (options.notLogin) {
+          options.notLogin(data)
+        } else {
+          options.context.redirect('/app/user/login')
+        }
+      } else if (status === 402) {
+        if (data.data.type === 'wxauth') {
+          const red = encodeURIComponent(`${BASE_URL}${WECHATAUTHPAGE}?red=${options.callbackPage}`)
           if (options.context.isServer) {
-            options.context.redirect('/app/403')
-          } else if (options.context.toast) {
-            options.context.toast({
-              message: '无权访问',
-              position: 'center',
-              duration: 1000
-            })
+            options.context.redirect(getWechatAuthUrl(red))
           } else {
-            options.context.redirect('/app/403')
+            window.location.replace(getWechatAuthUrl(red))
           }
-          break
-        case 400:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 404:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 405:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 406:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 410:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 422:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-        case 503:
-          // 处理返回的data.message
-          apiLog({ message: data.message })
-          options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
-          break
-
-        default:
-          options.callback(data)
+        }
+      } else if (status === 403) {
+        options.context.redirect('/app/403')
+      } else if (status === 300) {
+        if (/^\//.test(data.data.url) || options.context.isServer) {
+          options.context.redirect(data.data.url)
+        } else {
+          window.location.href = data.data.url
+        }
+      } else if (needFriendlyCode()) {
+        apiLog({ message: data.message })
+        options.context.redirect(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
       }
     } else {
       options.context.redirect('/app/404')
     }
   },
-  handleAjax () {
-
+  handleAjax (options) {
+    const res = options.response
+    if (res.status === 200) {
+      const data = res.data
+      const status = data.status
+      if (status === 200 || status === 210) {
+        options.callback(data)
+      } else if (status === 401) {
+        if (options.notLogin) {
+          options.notLogin(data)
+        } else {
+          options.router.push('/app/user/login')
+        }
+      } else if (status === 402) {
+        if (data.data.type === 'wxauth') {
+          const red = encodeURIComponent(`${BASE_URL}${WECHATAUTHPAGE}?red=${options.callbackPage}`)
+          window.location.replace(getWechatAuthUrl(red))
+        }
+      } else if (status === 403) {
+        options.router.push('/app/403')
+      } else if (status === 300) {
+        if (/^\//.test(data.data.url)) {
+          options.router.push(data.data.url)
+        } else {
+          window.location.href = data.data.url
+        }
+      } else if (needFriendlyCode()) {
+        apiLog({ message: data.message })
+        options.router.push(`/app/errorlog?msg=${encodeURIComponent(data.message)}`)
+      }
+    } else {
+      options.router.push('/app/404')
+    }
   }
 }
 
 const getWechatAuthUrl = redirect => `${WECHATAUTHURL}&redirect_uri=${redirect}${WECHATAUTHSUFFIX}`
+const needFriendlyCode = code => code === 310 || code === 400 || code === 404 || code === 405 || code === 406 || code === 410 || code === 422 || code === 503
 
 export const handleApi = handleCallback.handleApi
 

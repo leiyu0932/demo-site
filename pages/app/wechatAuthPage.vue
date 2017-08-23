@@ -5,6 +5,7 @@
 </template>
 <script>
 import axios from '~/utils/axiosCross'
+import { handleAjax } from '~/utils/handle'
 
 export default {
   name: 'wechatAuthPage',
@@ -16,10 +17,14 @@ export default {
   },
   async mounted () {
     const response = await axios.get(`ajax/weixin/auth/login?code=${this.query.code}&state=${this.query.state}`)
-    console.log(response.data)
-    if (response.data.status === 200) {
-      this.$router.push(this.query.red)
+    const callback = data => {
+      this.$router.replace(this.query.red)
     }
+    handleAjax({
+      router: this.$router,
+      response,
+      callback
+    })
   }
 }
 </script>

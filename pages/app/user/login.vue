@@ -38,7 +38,7 @@ export default {
         this.formUsername = ''
         this.formPassword = ''
         this.formError = null
-        // this.$router.push('/app/user')
+        this.$router.push('/app/home')
       } catch (e) {
         this.formError = e.message
       }

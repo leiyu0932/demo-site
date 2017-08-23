@@ -1,16 +1,26 @@
 <template>
   <div>
     微信登入才能看见我
+    <br> {{ info }}
+    <Bottom></Bottom>
   </div>
 </template>
 <script>
-// import axios from '~/utils/axiosCross'
+import Bottom from '~/components/Bottom'
 
 export default {
   name: 'info',
   middleware: 'apitest',
+  components: {
+    Bottom
+  },
   head: {
     title: '微信'
+  },
+  asyncData ({ info }) {
+    return {
+      info
+    }
   }
 }
 </script>
