@@ -1,6 +1,6 @@
 <template>
-  <div class="body">
-    <div id="user">
+  <div id="user" class="body">
+    <div>
       {{ sss }}
       <br>
       <a @click="logout">登出</a>
@@ -10,17 +10,15 @@
 </template>
 <script>
 import axios from '~/utils/axiosCross'
-// import Cookies from '~/utils/js.cookie'
 import Bottom from '~/components/Bottom'
 
 export default {
   name: 'user',
-  // layout: 'main',
   components: {
     Bottom
   },
   // middleware: 'auth'
-  async asyncData ({ isServer, params, req, redirect }) {
+  async asyncData ({ isServer, req }) {
     // xsrfCookieName: 'XSRF-TOKEN'
     const config = {}
     if (isServer && req && req.headers.cookie) {
@@ -33,16 +31,11 @@ export default {
     }
     let { data } = await axios.get('ajax/user/info', config)
     return {
-      sss: data,
-      redi: redirect
+      sss: data
     }
   },
   beforeCreate () {
     console.log(process.env.NODE_ENV)
-  },
-  mounted () {
-    window.sss = this
-    console.log(this)
   },
   methods: {
     async logout () {
@@ -50,14 +43,9 @@ export default {
       console.log(data)
       if (data.status === 200) {
         console.log(data.data.session.name)
-        // Cookies.remove(data.data.session.name)
         this.$router.push('/app/user/login')
-        // console.log(this)
       }
     }
   }
 }
 </script>
-<style scoped>
-
-</style>

@@ -11,11 +11,11 @@ import Bottom from '~/components/Bottom'
 export default {
   name: 'info',
   middleware: 'apitest',
-  components: {
-    Bottom
-  },
   head: {
     title: '微信'
+  },
+  components: {
+    Bottom
   },
   asyncData ({ info }) {
     return {
