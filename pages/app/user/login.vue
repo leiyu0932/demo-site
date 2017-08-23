@@ -9,7 +9,10 @@
         <input type="password" v-model="formPassword" name="password" />
       </p>
       <button type="submit">Login</button>
+      <br>
       <nuxt-link to="/app/user/reg">注册</nuxt-link>
+      <br>
+      <nuxt-link to="/app/home">home</nuxt-link>
     </form>
   </div>
 </template>

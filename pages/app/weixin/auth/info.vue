@@ -1,7 +1,10 @@
 <template>
-  <div>
+  <div class="body">
     微信登入才能看见我
-    <br> {{ info }}
+    <br>
+    <div>
+      {{ info }}
+    </div>
     <Bottom></Bottom>
   </div>
 </template>
