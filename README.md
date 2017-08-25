@@ -15,11 +15,9 @@ git github gitlab
 travis CI jenkins
 socket.io peerjs
 前沿网站：掘金 segmentfault
-
 https://codepen.io awesome code 代码编辑和分享
 
 https://cn.vuejs.org/v2/guide/
-
 https://router.vuejs.org/zh-cn/api/router-link.html
 https://vuex.vuejs.org/zh-cn/
 https://ssr.vuejs.org/zh/
