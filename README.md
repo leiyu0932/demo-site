@@ -1,23 +1,25 @@
 # demo-site
 
 nodejs node版本管理 npm install cnpm -g  npmjs.com
-cnpm 代替 npm 
+cnpm 代替 npm
 windows 配置环境变量
 编辑器：vscode 、atom、 subline
 npm init
 
 cnpm i vue-cli -g
 
-nodejs (npm cnpm yarn) 
+nodejs (npm cnpm yarn)
 (webapck grunt gulp rollup)
-vue vuex vue-router nuxt axios 
-git github gitlab 
+vue vuex vue-router nuxt axios
+git github gitlab
 travis CI jenkins
 socket.io peerjs
 前沿网站：掘金 segmentfault
+
 https://codepen.io awesome code 代码编辑和分享
 
 https://cn.vuejs.org/v2/guide/
+
 https://router.vuejs.org/zh-cn/api/router-link.html
 https://vuex.vuejs.org/zh-cn/
 https://ssr.vuejs.org/zh/
@@ -28,7 +30,7 @@ https://zh.nuxtjs.org/guide/views/
 
 
 
-> vue ssr nuxt drupal node 
+> vue ssr nuxt drupal node
 
 ## Build Setup
 
